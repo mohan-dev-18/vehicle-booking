@@ -1,0 +1,375 @@
+/* ================= BODY ================= */
+
+body{
+font-family:'Segoe UI',sans-serif;
+margin:0;
+padding:0;
+background-image:url("../background.jpg");
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+}
+
+body::before{
+content:"";
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(99, 96, 96, 0.75);
+backdrop-filter:blur(5px);
+z-index:-1;
+}
+
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 40px;
+background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+color:white;
+box-shadow:0 5px 15px rgba(0,0,0,0.3);
+position:sticky;
+top:0;
+z-index:100;
+}
+
+.navbar h3{
+letter-spacing:2px;
+font-weight:600;
+}
+
+.nav1{
+display:flex;
+gap:25px;
+align-items:center;
+}
+
+.nav1 a{
+cursor:pointer;
+font-weight:500;
+position:relative;
+transition:.3s;
+}
+
+.nav1 a:hover{
+color:#ffd369;
+}
+
+.nav1 a::after{
+content:"";
+position:absolute;
+bottom:-5px;
+left:0;
+width:0;
+height:2px;
+background:#ffd369;
+transition:.3s;
+}
+
+.nav1 a:hover::after{
+width:100%;
+}
+
+.toggle{
+display:none;
+font-size:26px;
+cursor:pointer;
+}
+
+
+/* ================= HOME TITLE ================= */
+
+.homename{
+text-align:center;
+margin-top:30px;
+font-size:28px;
+color:#333;
+}
+
+
+/* ================= GRID ================= */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:30px;
+padding:40px;
+max-width:1200px;
+margin:auto;
+}
+
+
+/* ================= CARD ================= */
+
+.card{
+background:linear-gradient(145deg,#ffffff,#e6e6e6);
+padding:35px;
+border-radius:18px;
+text-align:center;
+cursor:pointer;
+transition:.35s;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+height:100px;
+width:200px;
+}
+
+.card:hover{
+transform:translateY(-10px) scale(1.04);
+box-shadow:0 20px 40px rgba(0,0,0,0.2);
+background:linear-gradient(145deg,#fff,#f4f4f4);
+}
+
+
+/* ================= CARD ICON ================= */
+
+.cardicon{
+width:90px;
+height:90px;
+object-fit:contain;
+margin-bottom:-15px;
+margin-top: -20px;
+transition:.4s;
+}
+
+/* .card:hover .cardicon{
+transform:scale(1.2) rotate(5deg);
+} */
+
+
+/* ================= VEHICLE LIST ================= */
+
+.list{
+display:flex;
+align-items:center;
+background:white;
+margin:20px auto;
+padding:15px;
+border-radius:12px;
+width:30%;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+transition:.3s;
+cursor:pointer;
+}
+
+.list:hover{
+transform:scale(1.03);
+}
+
+.list img{
+width:160px;
+height:110px;
+object-fit:contain;
+border-radius:8px;
+margin-right:15px;
+}
+
+
+/* ================= VEHICLE DETAILS ================= */
+
+.details{
+max-width:700px;
+margin:40px auto;
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
+animation:fadeUp .5s ease;
+}
+
+.details img{
+width:400px;
+height: 400px;
+align-items: center;
+border-radius:12px;
+margin-bottom:20px;
+object-fit: contain;
+margin-left: 20%;
+}
+
+.fulldetails{
+margin:8px 0;
+margin-left: 35%;
+}
+
+
+/* ================= CALL BUTTON ================= */
+
+.call{
+display:block;
+background:linear-gradient(45deg,#11998e,#38ef7d);
+color:white;
+padding:12px;
+text-align:center;
+border-radius:8px;
+margin-top:20px;
+text-decoration:none;
+font-weight:600;
+transition:.3s;
+width: 50%;
+margin-left: 25%;
+}
+
+.call:hover{
+transform:scale(1.05);
+}
+
+
+/* ================= FORMS ================= */
+
+.form,.loginform{
+max-width:400px;
+margin:40px auto;
+background:rgba(255,255,255,0.85);
+backdrop-filter:blur(12px);
+padding:25px;
+border-radius:12px;
+box-shadow:0 10px 30px rgba(0,0,0,0.15);
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+
+.inputbox{
+border:none;
+border-bottom:2px solid #888;
+padding:10px;
+font-size:16px;
+background:transparent;
+transition:.3s;
+margin-left: 80px;
+margin-top: 20px;
+width: 230px;
+
+}
+
+.inputbox:focus{
+outline:none;
+border-color:#11998e;
+}
+
+
+.formbutton{
+padding:12px;
+border:none;
+border-radius:8px;
+background:linear-gradient(45deg,#ff7e5f,#feb47b);
+color:white;
+font-size:16px;
+cursor:pointer;
+transition:.3s;
+margin-left: 150px;
+margin-top: 50px;
+}
+
+.formbutton:hover{
+transform:scale(1.05);
+}
+
+
+/* ================= USER LIST ================= */
+
+.form div{
+padding:8px;
+border-bottom:1px solid #ddd;
+}
+
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(30px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+
+/* ================= TABLET ================= */
+
+@media(max-width:1024px){
+
+.grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+.list{
+width:90%;
+}
+
+}
+
+
+/* ================= MOBILE ================= */
+
+@media(max-width:768px){
+
+.navbar{
+flex-direction:row;
+padding:15px 20px;
+}
+
+.toggle{
+display:block;
+}
+
+.nav1{
+display:none;
+position:absolute;
+top:60px;
+right:0;
+background:#203a43;
+flex-direction:column;
+padding:20px;
+gap:15px;
+width:200px;
+}
+
+.nav1.open{
+display:flex;
+}
+
+.grid{
+grid-template-columns:1fr;
+}
+
+.list{
+flex-direction:column;
+text-align:center;
+width:90%;
+}
+
+.list img{
+margin-bottom:10px;
+margin-right:0;
+}
+
+}
+
+
+/* ================= SMALL MOBILE ================= */
+
+@media(max-width:480px){
+
+.homename{
+font-size:22px;
+}
+
+.form,.loginform{
+width:90%;
+}
+
+}
+hr {
+    border: 1px solid rgb(168, 166, 166);
+    width: 100%;
+}

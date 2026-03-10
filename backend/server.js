@@ -1,0 +1,87 @@
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const multer = require("multer");
+const path = require("path");
+
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
+mongoose.connect("mongodb://127.0.0.1:27017/pokkuvandi")
+.then(()=>console.log("MongoDB Connected"))
+.catch(err=>console.log(err));
+
+const storage = multer.diskStorage({
+
+ destination:(req,file,cb)=>{
+  cb(null,"uploads/");
+ },
+
+ filename:(req,file,cb)=>{
+  cb(null,Date.now()+path.extname(file.originalname));
+ }
+
+});
+
+const upload = multer({storage});
+
+app.use("/uploads",express.static("uploads"));
+
+const User = mongoose.model("User",{
+ name:String,
+ phone:String
+});
+
+const Vehicle = mongoose.model("Vehicle",{
+ type:String,
+ name:String,
+ ownerName:String,
+ company:String,
+ number:String,
+ location:String,
+ contact:String,
+ image:String
+});
+
+app.post("/login",async(req,res)=>{
+ try{
+  const user=new User(req.body);
+  await user.save();
+  res.json(user);
+ }catch(err){
+  res.status(500).json(err);
+ }
+});
+
+app.get("/users",async(req,res)=>{
+ const data=await User.find();
+ res.json(data);
+});
+
+app.post("/vehicle",upload.single("image"),async(req,res)=>{
+
+ const vehicle=new Vehicle({
+  type:req.body.type,
+  name:req.body.name,
+  ownerName:req.body.ownerName,
+  company:req.body.company,
+  number:req.body.number,
+  location:req.body.location,
+  contact:req.body.contact,
+  image:req.file ? req.file.filename : ""
+ });
+
+ await vehicle.save();
+
+ res.json(vehicle);
+
+});
+
+app.get("/vehicle/:type",async(req,res)=>{
+ const data=await Vehicle.find({type:req.params.type});
+ res.json(data);
+});
+
+app.listen(5000,()=>console.log("Server Running on 5000"));
