@@ -62,7 +62,7 @@ app.get("/users",async(req,res)=>{
  res.json(data);
 });
 
-app.post("/vehicle",upload.single("image"),async(req,res)=>{
+app.post("/vehicles",upload.single("image"),async(req,res)=>{
 
  const vehicle=new Vehicle({
   type:req.body.type,
@@ -81,7 +81,7 @@ app.post("/vehicle",upload.single("image"),async(req,res)=>{
 
 });
 
-app.get("/vehicle/:type",async(req,res)=>{
+app.get("/vehicles/:type",async(req,res)=>{
  const data=await Vehicle.find({type:req.params.type});
  res.json(data);
 });
