@@ -2,7 +2,7 @@ import React,{useState,useEffect} from "react";
 import axios from "axios";
 import "./App.css";
 
-const API="http://localhost:5000";
+const API="mongodb+srv://smohan:smohan182003@pokkuvandi.umwgvaa.mongodb.net/?appName=pokkuvandi";
 
 function App(){
 
