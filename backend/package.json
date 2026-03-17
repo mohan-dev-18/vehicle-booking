@@ -1,20 +1,18 @@
 {
-  "name": "backend",
+  "name": "vehicle-backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "Backend for vehicle booking application",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "keywords": [],
-  "author": "",
+  "author": "Mohan",
   "license": "ISC",
   "dependencies": {
-    "cors": "^2.8.6",
-    "express": "^5.2.1",
-    "mongoose": "^9.2.3",
-    "multer": "^2.1.0"
-  },
-  "devDependencies": {},
-  "description": ""
+    "cors": "^2.8.5",
+    "dotenv": "^17.0.0",
+    "express": "^4.18.2",
+    "mongoose": "^8.5.1",
+    "multer": "^1.4.5-lts.1"
+  }
 }

@@ -196,7 +196,7 @@ className="cardicon"
 alt={type}
 />
 
-<p>{type}</p>
+<h4>{type}</h4>
 
 </div>
 
@@ -247,9 +247,9 @@ alt=""
 
 <h3>{v.name}</h3>
 
-<p>{v.company}</p>
+<h4>{v.company}</h4>
 
-<p>{v.location}</p>
+<h4>{v.location}</h4>
 
 </div>
 
@@ -326,7 +326,7 @@ const AddVehicle=()=>(
 
 <div className="form">
 
-<h2 className="homename">
+<h2 className="homename1">
 Join to us
 </h2>
 
@@ -430,7 +430,7 @@ const Contact=()=>(
 
 <div className="form">
 
-<h2>Help & Support</h2>
+<h2 className="homename1">Help & Support</h2>
 
 <b>Address:</b>
 <p >
@@ -471,7 +471,7 @@ return(
 
 <div className="form">
 
-<h2>User Details</h2>
+<h2 className="homename1">User Details</h2>
 
 {users.map(u=>(
 

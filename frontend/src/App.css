@@ -88,8 +88,15 @@ cursor:pointer;
 text-align:center;
 margin-top:30px;
 font-size:28px;
-color:#333;
+color:white;
 }
+.homename1{
+text-align:center;
+margin-top:30px;
+font-size:28px;
+color:black;
+}
+
 
 
 /* ================= GRID ================= */
@@ -161,8 +168,8 @@ transform:scale(1.03);
 }
 
 .list img{
-width:160px;
-height:110px;
+width:200px;
+height:150px;
 object-fit:contain;
 border-radius:8px;
 margin-right:15px;
@@ -183,7 +190,7 @@ animation:fadeUp .5s ease;
 
 .details img{
 width:400px;
-height: 400px;
+height: 350px;
 align-items: center;
 border-radius:12px;
 margin-bottom:20px;
@@ -242,7 +249,7 @@ padding:10px;
 font-size:16px;
 background:transparent;
 transition:.3s;
-margin-left: 80px;
+margin-left: 60px;
 margin-top: 20px;
 width: 230px;
 
