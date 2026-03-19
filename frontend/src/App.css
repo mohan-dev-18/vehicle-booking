@@ -54,6 +54,9 @@ cursor:pointer;
 font-weight:500;
 position:relative;
 transition:.3s;
+color:white;              
+text-decoration:none;     
+}
 }
 
 .nav1 a:hover{
@@ -349,6 +352,28 @@ display:flex;
 grid-template-columns:1fr;
 }
 
+/* ✅ FORM FIX */
+.form,.loginform{
+width:90%;
+margin:20px auto;
+padding:20px;
+}
+
+/* ✅ INPUT FIX */
+.inputbox{
+width:90%;
+margin-left:0;
+margin-top:10px;
+}
+
+/* ✅ BUTTON FIX */
+.formbutton{
+width:100%;
+margin-left:0;
+margin-top:20px;
+}
+
+/* VEHICLE LIST */
 .list{
 flex-direction:column;
 text-align:center;
@@ -358,21 +383,35 @@ width:90%;
 .list img{
 margin-bottom:10px;
 margin-right:0;
+width:100%;
+height:auto;
 }
 
 }
-
-
 /* ================= SMALL MOBILE ================= */
 
 @media(max-width:480px){
 
-.homename{
-font-size:22px;
+.details{
+width:70%;
+margin:20px auto;
+padding:15px;
 }
 
-.form,.loginform{
+.details img{
+width:80%;
+height:auto;
+margin-left:0;
+}
+
+.fulldetails{
+margin-left:0;
+text-align:center;
+}
+
+.call{
 width:70%;
+margin-left:5%;
 }
 
 }
