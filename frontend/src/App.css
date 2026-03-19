@@ -372,11 +372,11 @@ font-size:22px;
 }
 
 .form,.loginform{
-width:90%;
+width:70%;
 }
 
 }
 hr {
     border: 1px solid rgb(168, 166, 166);
-    width: 100%;
+    width: 70%;
 }
