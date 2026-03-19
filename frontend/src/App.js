@@ -2,7 +2,9 @@ import React,{useState,useEffect} from "react";
 import axios from "axios";
 import "./App.css";
 
+// ✅ FIXED API URL
 const API="http://vehicle-booking-backend-tu1y.onrender.com";
+
 function App(){
 
 const [page,setPage]=useState("login");
@@ -62,6 +64,7 @@ e.preventDefault();
 
 const data=Object.fromEntries(new FormData(e.target));
 
+// ✅ uses correct API
 const res=await axios.post(API+"/login",data);
 
 localStorage.setItem("user",JSON.stringify(res.data));
@@ -177,7 +180,8 @@ onClick={()=>{
 
 setSelectedType(type);
 
-axios.get(API+"/vehicle/"+type)
+// ✅ FIXED ROUTE
+axios.get(API+"/vehicles/"+type)
 .then(res=>{
 
 setVehicles(res.data);
@@ -335,7 +339,8 @@ e.preventDefault();
 
 const formData=new FormData(e.target);
 
-await axios.post(API+"/vehicle",formData);
+// ✅ FIXED ROUTE
+await axios.post(API+"/vehicles",formData);
 
 alert("Vehicle Added");
 
@@ -500,15 +505,10 @@ return(
 <Navbar/>
 
 {page==="home" && <Home/>}
-
 {page==="add" && <AddVehicle/>}
-
 {page==="contact" && <Contact/>}
-
 {page==="users" && <Users/>}
-
 {page==="list" && <VehicleList/>}
-
 {page==="details" && <Details/>}
 
 </div>
