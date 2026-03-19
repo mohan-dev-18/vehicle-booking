@@ -82,7 +82,7 @@ app.post("/vehicles",upload.single("image"),async(req,res)=>{
 });
 
 app.get("/vehicles",async(req,res)=>{
- const data=await Vehicle.find({type:req.params.type});
+ const data = await Vehicle.find();
  res.json(data);
 });
 
