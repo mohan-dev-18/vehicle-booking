@@ -2,7 +2,7 @@ import React,{useState,useEffect} from "react";
 import axios from "axios";
 import "./App.css";
 
-const API="http://vehicle-booking-backend-tu1y.onrender.com";
+const API="https://vehicle-booking-backend-tu1y.onrender.com";
 function App(){
 
 const [page,setPage]=useState("login");
