@@ -66,7 +66,7 @@ setPage("home");
 </div>
 );
 
-// NAVBAR
+// NAVBAR (kept anchor)
 const Navbar=()=>{
 const [menuOpen,setMenuOpen]=useState(false);
 
@@ -77,16 +77,18 @@ return(
 <div className="toggle" onClick={()=>setMenuOpen(!menuOpen)}>☰</div>
 
 <div className={`nav1 ${menuOpen?"open":""}`}>
-<button onClick={()=>{setPage("home");setMenuOpen(false);}}>Home</button>
-<button onClick={()=>{setPage("add");setMenuOpen(false);}}>Join to us</button>
-<button onClick={()=>{setPage("contact");setMenuOpen(false);}}>Contact</button>
-<button onClick={()=>{setPage("users");setMenuOpen(false);}}>User Details</button>
-<button onClick={()=>{
+
+<a href="#" onClick={(e)=>{e.preventDefault();setPage("home");}}>Home</a>
+<a href="#" onClick={(e)=>{e.preventDefault();setPage("add");}}>Join to us</a>
+<a href="#" onClick={(e)=>{e.preventDefault();setPage("contact");}}>Contact</a>
+<a href="#" onClick={(e)=>{e.preventDefault();setPage("users");}}>User Details</a>
+<a href="#" onClick={(e)=>{
+e.preventDefault();
 localStorage.removeItem("user");
 setUser(null);
 setPage("login");
-setMenuOpen(false);
-}}>Logout</button>
+}}>Logout</a>
+
 </div>
 </div>
 );
@@ -94,22 +96,32 @@ setMenuOpen(false);
 
 // HOME
 const Home=()=>(
+
 <div>
+
 <h2 className="homename">Welcome {user?.name}</h2>
 
 <div className="grid">
+
 {vehicleTypes.map(type=>(
+
 <div key={type} className="card"
+
 onClick={()=>{
+
 setSelectedType(type);
 
-// ✅ FIXED (route + encoding)
-axios.get(API+"/vehicles/"+encodeURIComponent(type))
+// ✅ FETCH ALL + FILTER
+axios.get(API+"/vehicles")
 .then(res=>{
-setVehicles(res.data);
+const filtered = res.data.filter(v => v.type === type);
+setVehicles(filtered);
 setPage("list");
-});
-}}>
+})
+.catch(err=>console.log(err));
+
+}}
+>
 
 <img
 src={"/icons/"+type.replace(/[^a-zA-Z]/g,"").toLowerCase()+".jpg"}
@@ -119,21 +131,39 @@ alt={type}
 />
 
 <h4>{type}</h4>
+
 </div>
+
 ))}
+
 </div>
+
 </div>
+
 );
 
 // VEHICLE LIST
 const VehicleList=()=>(
+
 <div>
+
 <h2 className="homename">{selectedType}</h2>
 
 <div className="vehidetails">
+
+{vehicles.length===0 && <p>No vehicles found</p>}
+
 {vehicles.map(v=>(
+
 <div key={v._id} className="list"
-onClick={()=>{setSelectedVehicle(v);setPage("details");}}>
+
+onClick={()=>{
+
+setSelectedVehicle(v);
+setPage("details");
+
+}}
+>
 
 <img src={`${API}/uploads/${v.image}`} alt=""/>
 
@@ -144,13 +174,18 @@ onClick={()=>{setSelectedVehicle(v);setPage("details");}}>
 </div>
 
 </div>
+
 ))}
+
 </div>
+
 </div>
+
 );
 
 // DETAILS
 const Details=()=>(
+
 <div className="details">
 
 <img src={`${API}/uploads/${selectedVehicle.image}`} alt=""/>
@@ -165,18 +200,21 @@ const Details=()=>(
 <a href={`tel:${selectedVehicle.contact}`} className="call">Call</a>
 
 </div>
+
 );
 
 // ADD VEHICLE
 const AddVehicle=()=>(
+
 <div className="form">
+
 <h2 className="homename1">Join to us</h2>
 
 <form onSubmit={async(e)=>{
 e.preventDefault();
+
 const formData=new FormData(e.target);
 
-// ✅ FIXED route
 await axios.post(API+"/vehicles",formData);
 
 alert("Vehicle Added");
@@ -196,20 +234,26 @@ alert("Vehicle Added");
 <input type="file" name="image" className="inputbox" required/>
 
 <button className="formbutton">Submit</button>
+
 </form>
+
 </div>
+
 );
 
 // CONTACT
 const Contact=()=>(
+
 <div className="form">
 <h2 className="homename1">Help & Support</h2>
 <p>Trichy, Tamil Nadu</p>
 </div>
+
 );
 
 // USERS
 const Users=()=>{
+
 const [users,setUsers]=useState([]);
 
 useEffect(()=>{
@@ -219,14 +263,17 @@ axios.get(API+"/users").then(res=>setUsers(res.data));
 return(
 <div className="form">
 <h2>User Details</h2>
+
 {users.map(u=>(
 <div key={u._id}>
 <p>{u.name}</p>
 <p>{u.phone}</p>
 </div>
 ))}
+
 </div>
 );
+
 };
 
 // RETURN
