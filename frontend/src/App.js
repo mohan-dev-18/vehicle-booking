@@ -246,7 +246,19 @@ const Contact=()=>(
 
 <div className="form">
 <h2 className="homename1">Help & Support</h2>
-<p>Trichy, Tamil Nadu</p>
+<b>Address:</b>
+<p >121, North Street, Woraiyur, Trichy, Tamil Nadu - 620003</p>
+<hr/>
+<b>Customer Care:</b>
+<p>
+9363023xxx
+</p>
+<hr/>
+<b>Email:</b>
+<p>
+
+vaadagavandi@gmail.com
+</p>
 </div>
 
 );
