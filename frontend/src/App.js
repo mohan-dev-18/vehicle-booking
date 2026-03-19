@@ -3,7 +3,7 @@ import axios from "axios";
 import "./App.css";
 
 // ✅ FIXED API URL
-const API="http://vehicle-booking-backend-tu1y.onrender.com";
+const API="https://vehicle-booking-backend-tu1y.onrender.com";
 
 function App(){
 
