@@ -10,13 +10,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-/* MongoDB connection */
+/* ================= MongoDB Connection ================= */
 
 mongoose.connect(process.env.MONGO_URI)
 .then(()=>console.log("MongoDB Connected"))
 .catch(err=>console.log(err));
 
-/* Upload storage */
+/* ================= Image Upload Setup ================= */
 
 const storage = multer.diskStorage({
 
@@ -32,9 +32,22 @@ cb(null,Date.now()+path.extname(file.originalname));
 
 const upload = multer({storage});
 
+/* Serve uploaded images */
+
 app.use("/uploads",express.static("uploads"));
 
-/* Models */
+/* ================= Models ================= */
+
+/* User Model */
+
+const User = mongoose.model("User",{
+
+name:String,
+phone:String
+
+});
+
+/* Vehicle Model */
 
 const Vehicle = mongoose.model("Vehicle",{
 
@@ -48,6 +61,51 @@ contact:String,
 image:String
 
 });
+
+/* ================= User Routes ================= */
+
+/* Add User (Login/Register) */
+
+app.post("/login",async(req,res)=>{
+
+try{
+
+const user = new User({
+name:req.body.name,
+phone:req.body.phone
+});
+
+await user.save();
+
+res.json(user);
+
+}catch(err){
+
+console.log(err);
+res.status(500).json({error:"User save failed"});
+
+}
+
+});
+
+/* Get All Users */
+
+app.get("/users",async(req,res)=>{
+
+try{
+
+const users = await User.find();
+res.json(users);
+
+}catch(err){
+
+res.status(500).json(err);
+
+}
+
+});
+
+/* ================= Vehicle Routes ================= */
 
 /* Add Vehicle */
 
@@ -81,18 +139,28 @@ res.status(500).json({error:"Vehicle upload failed"});
 
 });
 
-/* Get vehicles */
+/* Get All Vehicles */
 
 app.get("/vehicles",async(req,res)=>{
 
-const data = await Vehicle.find();
-res.json(data);
+try{
+
+const vehicles = await Vehicle.find();
+res.json(vehicles);
+
+}catch(err){
+
+res.status(500).json(err);
+
+}
 
 });
 
-/* Get vehicle by type */
+/* Get Vehicles By Type */
 
 app.get("/vehicle/:type",async(req,res)=>{
+
+try{
 
 const vehicles = await Vehicle.find({
 type:req.params.type
@@ -100,8 +168,16 @@ type:req.params.type
 
 res.json(vehicles);
 
+}catch(err){
+
+res.status(500).json(err);
+
+}
+
 });
+
+/* ================= Server ================= */
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT,()=>console.log("Server Running"));
+app.listen(PORT,()=>console.log("Server Running on "+PORT));
